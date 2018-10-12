@@ -1,9 +1,9 @@
 #!usr/bin/env python3
 
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, escape
-import model, datetime, time
-
-app = Flask(__name__)
+import datetime, time
+from src import app
+import requests
 
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Qhgvf8z\n\xec]/'
