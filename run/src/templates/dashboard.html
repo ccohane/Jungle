@@ -1,0 +1,31 @@
+{% extends "structure.html" %}
+{% block main %}
+{% for x in restaurants %}
+<div class="row mt-2">
+    
+        <div class="ml-sm-auto col-lg-2 px-4">
+            <img class="mx-auto" src="moose.png">
+        </div>
+        <div class="ml-sm-auto col-lg-8 px-4">
+
+            <h3>{{ Restaurant Name }}</h3>
+            <h5>{{ Machine Learning Star Review  }}</h5>
+
+            <small>{{Address}}</small>
+        </div>
+
+        <div class="ml-sm-auto col-lg-2 px-4">
+            {{Map location of restaurant}}
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+
+        {% block main %} {% endblock main%} {% block additional_javascript_dependencies %} {% endblock additional_javascript_dependencies%}
+
+
+    </div>
+
+{% endfor %}
+
+{% endblock main %}
