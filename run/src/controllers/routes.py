@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, escape
 import datetime, time
 from src import app
-import requests
+import requests, model
 
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Qhgvf8z\n\xec]/'
@@ -53,12 +53,20 @@ def logout():
     session.pop('username', None)
     return redirect('/go')
 
+@app.route('/dashboard')
+def dashboard():
+    if request.method == 'GET':
+        user_name='%s' % escape(session['username'])
+        restaurants=model.get_restaurants(user_name)
+        return render_template('dashboard.html')
+    else:
+        user_name='%s' % escape(session['username'])
+        restaurants=model.get_restaurants(user_name)
+        return render_template('dashboard.html', message='Username Taken')
+
+
+
 if __name__=="__main__":
-    import os
-    os.system('clear')
-    print("Warning")
-    print("This server settings are hard coding to values associated with a local or staging environment and ar unfit for production")
     #FIXME change the following server setings from 127.1 to 0.0.0.0
-    #app.run(host="127.1", port="5000" debug=True)
-    app.run(debug=True)
-    #app.run(host="0.0.0.0" ,port="1996",debug=True)
+    app.run(host="127.1", port="5000", debug=True)
+    
